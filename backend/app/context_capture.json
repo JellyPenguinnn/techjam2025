@@ -1,0 +1,44 @@
+[
+  {
+    "keys": ["nric is", "nric:", "nric", "ic number is"],
+    "window": 32,
+    "label": "NRIC_SG",
+    "value_regex": "\\b[STFG]\\d{7}[A-Z]\\b"
+  },
+  {
+    "keys": ["passport number", "passport no", "passport:"],
+    "window": 32,
+    "label": "PASSPORT_ID",
+    "value_regex": "\\b[A-Z]\\d{7,8}[A-Z]?\\b"
+  },
+  {
+    "keys": ["mobile number", "contact number", "handphone no"],
+    "window": 32,
+    "label": "PHONE_SG",
+    "value_regex": "\\b(?:\\+65[\\s-]?)?(?:6|8|9)\\d{3}[\\s-]?\\d{4}\\b"
+  },
+  {
+    "keys": ["account number", "account no.", "account no", "acct no", "savings account"],
+    "window": 48,
+    "label": "BANK_ACCOUNT_SG",
+    "value_regex": "[\\d-]{9,18}\\b"
+  },
+  {
+    "keys": ["reference code", "reference no"],
+    "window": 48,
+    "label": "ACCOUNT_ID",
+    "value_regex": "'?[A-Za-z0-9#_-]{5,20}'?"
+  },
+  {
+    "keys": ["email is", "e-mail", "my email"],
+    "window": 48,
+    "label": "EMAIL",
+    "value_regex": "\\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9]{2,}\\b"
+  },
+  {
+    "keys": ["cvc of", "cvc"],
+    "window": 10,
+    "label": "CARD_CVC",
+    "value_regex": "\\b\\d{3,4}\\b"
+  }
+]

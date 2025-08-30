@@ -1,0 +1,25 @@
+{
+  "name": "privacy-guardian-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "backend": "cd ../backend && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload",
+    "start": "concurrently \"npm run backend\" \"npm run dev\"",
+    "dev:frontend": "vite --host 0.0.0.0 --port 3000"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.66",
+    "@types/react-dom": "18.2.22",
+    "typescript": "5.5.4",
+    "vite": "5.4.8",
+    "@vitejs/plugin-react": "4.3.1"
+  }
+}

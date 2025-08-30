@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Privacy Guardian - AI-powered PII detection and redaction for safer AI interactions" />
+    <meta name="theme-color" content="#25F4EE" />
+    <title>Privacy Guardian - AI-Powered PII Protection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+      /* Initial loading styles with TikTok-inspired theme */
+      #root {
+        background: radial-gradient(1400px 700px at 10% -10%, rgba(37, 244, 238, 0.02), transparent), 
+                    linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .loading-initial {
+        color: #F1F3F8;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+      
+      .loading-initial h1 {
+        background: linear-gradient(135deg, #25F4EE 0%, #FFFFFF 25%, #FE2C55 50%, #25F4EE 75%, #FFFFFF 100%);
+        background-size: 200% 200%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        position: relative;
+        letter-spacing: -0.5px;
+        animation: gradient-shift 3s ease-in-out infinite;
+      }
+      
+      @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      
+      .loading-initial p {
+        color: #B8C5D1;
+        margin: 0;
+        font-weight: 500;
+      }
+      
+      /* Loading animation */
+      .loading-initial::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, #25F4EE, #FE2C55);
+        margin: 20px auto;
+        border-radius: 2px;
+        animation: loading 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes loading {
+        0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
+        50% { opacity: 1; transform: scaleX(1); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="loading-initial">
+        <h1>Privacy Guardian</h1>
+        <p>Loading AI-powered protection...</p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
