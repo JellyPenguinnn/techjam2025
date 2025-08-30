@@ -325,8 +325,7 @@ $RECYCLE.BIN/
 *.onnx
 *.csv
 *.txt
-models/
-*.model
+
 # Large data files that should not be tracked
 pii_dataset.csv
 test.txt
@@ -389,3 +388,4 @@ config.local.*
 !test_edge_cases.py
 !test_api.py
 !conftest.py
+

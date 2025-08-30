@@ -139,18 +139,24 @@ def _find_all_spans(text: str) -> List[_MatchSpan]:
     return spans
 
 def _adjudicate_spans(spans: List[_MatchSpan], text: str) -> List[_MatchSpan]:
-    """A more robust adjudication engine to correctly resolve overlaps and merge entities."""
-    if not spans: return []
+    """
+    A more robust adjudication engine to resolve overlaps, filter false positives,
+    and merge entities.
+    """
+    if not spans:
+        return []
 
+    # Sort all incoming spans primarily by start index, then by longest match
     spans.sort(key=lambda s: (s.start, -s.end))
 
+    # Stage 1: Resolve Overlaps
     non_overlapping_spans: List[_MatchSpan] = []
     i = 0
     while i < len(spans):
         current_span = spans[i]
         overlapping_group = [current_span]
-        j = i + 1
         max_end = current_span.end
+        j = i + 1
         while j < len(spans) and spans[j].start < max_end:
             overlapping_group.append(spans[j])
             max_end = max(max_end, spans[j].end)
@@ -160,13 +166,30 @@ def _adjudicate_spans(spans: List[_MatchSpan], text: str) -> List[_MatchSpan]:
         non_overlapping_spans.append(best_span)
         i = j
 
-    if not non_overlapping_spans: return []
-        
-    merged_spans: List[_MatchSpan] = []
-    current_merge = non_overlapping_spans[0]
+    # Stage 2: Filter Known False Positives
+    known_false_positives = {
+        "ORG": {"nric", "cvc", "ssn", "iban"}
+    }
+    
+    filtered_spans: List[_MatchSpan] = []
+    for span in non_overlapping_spans:
+        label_upper = span.label.upper()
+        text_lower = span.text.lower().strip()
 
-    for i in range(1, len(non_overlapping_spans)):
-        next_span = non_overlapping_spans[i]
+        if label_upper in known_false_positives and text_lower in known_false_positives[label_upper]:
+            continue
+        
+        filtered_spans.append(span)
+
+    if not filtered_spans:
+        return []
+        
+    # Stage 3: Merge Adjacent Entities using the CORRECTED list
+    merged_spans: List[_MatchSpan] = []
+    current_merge = filtered_spans[0] 
+
+    for i in range(1, len(filtered_spans)):
+        next_span = filtered_spans[i] 
         gap_text = text[current_merge.end:next_span.start]
         
         is_person_merge = (current_merge.label == "PERSON" and next_span.label == "PERSON")
@@ -183,7 +206,7 @@ def _adjudicate_spans(spans: List[_MatchSpan], text: str) -> List[_MatchSpan]:
     
     merged_spans.append(current_merge)
 
-    logger.info(f"Adjudication reduced {len(spans)} potential spans to {len(merged_spans)}.")
+    logger.info(f"Adjudication reduced {len(spans)} potential spans to {len(merged_spans)} final entities.")
     return merged_spans
 
 def redact_text(text: str, **kwargs) -> RedactionResult:

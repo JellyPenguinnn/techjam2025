@@ -47,31 +47,30 @@ Our enhanced redaction engine provides state-of-the-art PII detection through a 
     * **100% On-Premise**: The entire application, including models and logic, runs in your environment. No data is ever sent to third-party services.
 
 
-
 ##  Technical Architecture
 
 Privacy Guardian is designed with a decoupled architecture, ensuring scalability and maintainability. The core logic resides in a powerful Python backend, which can be consumed by any modern frontend or integrated into other services.
 
 ```
-┌─────────────────┐       ┌──────────────────────────────────┐      ┌───────────────────────────┐
-│                 │       │                                  │      │   PII Detection Engine    │
-│  Any Client     │       │  FastAPI Backend (main.py)       │      │   (redaction.py)          │
-│ (React/Vue/etc.)│──────▶│                                  │◀─────┤                           │
-│                 │       │  • /redact API Endpoint          │      │  1. Regex Search          │
-└─────────────────┘       │  • /status & /health Endpoints   │      │  2. Context Capture       │
-                          │  • Async Request Handling        │      │  3. spaCy NER             │
-                          │                                  │      │  4. Adjudication & Merge  │
-                          └──────────────────────────────────┘      └───────────────────────────┘
-                                                                                  │
-                                                 ┌────────────────────────────────┘
-                                                 │
-                                                 ▼
-┌─────────────────────────────────────────────────────────────────────────────────────────────────┐               
-│  ┌───────────────────────────┐   ┌───────────────────────────┐   ┌───────────────────────────┐  │
-│  │ canonical_regex.json      │   │ context_capture.json      │   │ label_synonyms.json       │  │
-│  │ (Structured Patterns)     │   │ (Keyword-based Rules)     │   │ (Label Normalization)     │  │
-│  └───────────────────────────┘   └───────────────────────────┘   └───────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────┐     ┌────────────────────────────────┐     ┌──────────────────────────┐
+│                │     │                                │     │   PII Detection Engine   │
+│   Any Client   │     │    FastAPI Backend (main.py)   │     │   (redaction.py)         │
+│(React/Vue/etc.)│────▶│                                │◀────┤                          │
+│                │     │  • /redact API Endpoint        │     │  1. Regex Search         │
+└────────────────┘     │  • /status & /health Endpoints │     │  2. Context Capture      │
+                       │  • Async Request Handling      │     │  3. spaCy NER            │
+                       │                                │     │  4. Adjudication & Merge │
+                       └────────────────────────────────┘     └──────────────────────────┘
+                                                                            │
+                                             ┌──────────────────────────────┘
+                                             │
+                                             ▼
+   ┌───────────────────────────────────────────────────────────────────────────────┐              
+   │ ┌───────────────────────┐ ┌───────────────────────┐ ┌───────────────────────┐ │
+   │ │ canonical_regex.json  │ │ context_capture.json  │ │ label_synonyms.json   │ │
+   │ │ (Structured Patterns) │ │ (Keyword-based Rules) │ │ (Label Normalization) │ │
+   │ └───────────────────────┘ └───────────────────────┘ └───────────────────────┘ │
+   └───────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Core Components
@@ -118,33 +117,29 @@ Privacy Guardian is designed with a decoupled architecture, ensuring scalability
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/JelltPenguinnn/TechJam_2025.git](https://github.com/JellyPenguinnn/TechJam_2025.git)
-cd TechJam_2025
+git clone [https://github.com/JellyPenguinnn/techjam2025.git](https://github.com/JellyPenguinnn/techjam2025.git)
+cd techjam2025
 ```
 
 ### 2. Backend Setup
 ```bash
-# Navigate to the backend directory
-cd backend
-
 # Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+python -m venv backend/venv
+
+# Activate the virtual environment
+# On macOS/Linux:
+source backend/venv/bin/activate
+# On Windows:
+# backend\venv\Scripts\activate
 
 # Install required Python packages
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 
 # Download the default spaCy model
 python -m spacy download en_core_web_sm
 
-# Set up environment variables by copying the example
-cp .env.example .env
-
-# (Optional) Edit the .env file if you need to change the spaCy model
-# SPACY_MODEL=en_core_web_sm
-
 # Start the FastAPI server
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ### 3. Frontend Setup
@@ -208,57 +203,9 @@ LABEL_SYNONYMS_FILE="label_synonyms.json"
 }
 ```
 
-## API Usage
+## Sample Usage
 
-`POST /redact`
-
-Redacts PII from a given block of text.
-
-**Request Body:**
-```JSON
-{
-  "text": "Please contact John Doe. His NRIC is S1234567A and his email is john.doe@example.com."
-}
-```
-
-**Example `curl` Command:**
-```bash
-curl -X POST "http://localhost:8000/redact" \
-     -H "Content-Type: application/json" \
-     -d '{"text": "Please contact John Doe. His NRIC is S1234567A and his email is john.doe@example.com."}'
-```
-
-**Success Response (200 OK):**
-```JSON
-{
-  "redacted_text": "Please contact ***[PERSON#1]***. His NRIC is ***[NRIC_SG#1]*** and his email is ***[EMAIL#1]***.",
-  "entities": [
-    {
-      "type": "PERSON",
-      "placeholder": "***[PERSON#1]***",
-      "value_preview": "John Doe",
-      "confidence": null
-    },
-    {
-      "type": "NRIC_SG",
-      "placeholder": "***[NRIC_SG#1]***",
-      "value_preview": "S1234567A",
-      "confidence": null
-    },
-    {
-      "type": "EMAIL",
-      "placeholder": "***[EMAIL#1]***",
-      "value_preview": "john.doe@e...",
-      "confidence": null
-    }
-  ],
-  "map": {
-    "***[PERSON#1]***": "John Doe",
-    "***[NRIC_SG#1]***": "S1234567A",
-    "***[EMAIL#1]***": "john.doe@example.com"
-  }
-}
-```
+![Usage](./assets/usage.png)
 
 ## Model Training & Customization
 
