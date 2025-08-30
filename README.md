@@ -114,6 +114,8 @@ Privacy Guardian is designed with a decoupled architecture, ensuring scalability
 ### Prerequisites
 - Python 3.8 or higher
 - Git
+- Git LFS (Install from [https://git-lfs.github.com](https://git-lfs.github.com) or with Homebrew: `brew install git-lfs`)
+
 
 ### 1. Clone the Repository
 ```bash
@@ -203,7 +205,22 @@ LABEL_SYNONYMS_FILE="label_synonyms.json"
 }
 ```
 
-## Sample Usage
+## Application Usage
+
+Here are a few examples of how the PII Guardian API redacts sensitive information from different types of text.
+
+**Input Text:**
+```bash
+Hi, I need to verify a transaction from 2025-08-28. It was a payment to Innovate Solutions Pte Ltd with reference no INV-2025-9876. Please check my DBS savings account number 123-456789-0.
+
+The main applicant is Dr. Evelyn Reed, and her passport number is E1234567X. Please also include her spouse, David L. Chen, on the application. His contact is (65) 8765-4321.
+
+Please contact Mr. Alex Tan regarding his service request from 29/08/2025. His mobile number is 98765432, and his email is alex.t@gmail.com.sg. He confirmed his delivery address is 50 Orchard Road, Singapore 238868.
+```
+
+### User Interface
+
+The web interface provides a simple way to paste text and see the real-time redaction results.
 
 ![Usage](./assets/usage.png)
 
