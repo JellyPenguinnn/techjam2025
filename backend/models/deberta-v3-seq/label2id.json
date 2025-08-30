@@ -1,0 +1,20 @@
+{
+  "O": 0,
+  "B-EMAIL": 1,
+  "B-LOC": 2,
+  "I-LOC": 3,
+  "B-MISC": 4,
+  "I-MISC": 5,
+  "B-NAME_STUDENT": 6,
+  "I-NAME_STUDENT": 7,
+  "B-ORG": 8,
+  "I-ORG": 9,
+  "B-PER": 10,
+  "I-PER": 11,
+  "B-PHONE_NUM": 12,
+  "I-PHONE_NUM": 13,
+  "B-STREET_ADDRESS": 14,
+  "I-STREET_ADDRESS": 15,
+  "B-URL_PERSONAL": 16,
+  "B-USERNAME": 17
+}

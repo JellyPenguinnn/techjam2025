@@ -1,0 +1,145 @@
+{
+  "best_global_step": 3546,
+  "best_metric": 0.984,
+  "best_model_checkpoint": "backend/models/deberta-v3-seq/checkpoint-3546",
+  "epoch": 2.0,
+  "eval_steps": 500,
+  "global_step": 7092,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 1.0,
+      "grad_norm": 0.00621407013386488,
+      "learning_rate": 1.667345659667816e-05,
+      "loss": 0.3325,
+      "step": 3546
+    },
+    {
+      "epoch": 1.0,
+      "eval_f1": 0.984,
+      "eval_loss": 0.3277536630630493,
+      "eval_macro_f1": 0.9534530859739309,
+      "eval_per_entity": {
+        "EMAIL": {
+          "f1": 0.9885057471264368,
+          "precision": 0.9772727272727273,
+          "recall": 1.0
+        },
+        "NAME_STUDENT": {
+          "f1": 0.993981083404987,
+          "precision": 0.993127147766323,
+          "recall": 0.9948364888123924
+        },
+        "PHONE_NUM": {
+          "f1": 0.8400000000000001,
+          "precision": 0.875,
+          "recall": 0.8076923076923077
+        },
+        "STREET_ADDRESS": {
+          "f1": 0.9570552147239264,
+          "precision": 0.9873417721518988,
+          "recall": 0.9285714285714286
+        },
+        "URL_PERSONAL": {
+          "f1": 0.9411764705882353,
+          "precision": 0.8888888888888888,
+          "recall": 1.0
+        },
+        "USERNAME": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "eval_precision": 0.9866310160427807,
+      "eval_recall": 0.9813829787234043,
+      "eval_runtime": 5.6365,
+      "eval_samples_per_second": 78.772,
+      "eval_steps_per_second": 19.693,
+      "step": 3546
+    },
+    {
+      "epoch": 2.0,
+      "grad_norm": 0.006543620955199003,
+      "learning_rate": 4.700720777185835e-09,
+      "loss": 0.3255,
+      "step": 7092
+    },
+    {
+      "epoch": 2.0,
+      "eval_f1": 0.9820598006644519,
+      "eval_loss": 0.3281707167625427,
+      "eval_macro_f1": 0.9514861916520222,
+      "eval_per_entity": {
+        "EMAIL": {
+          "f1": 0.9885057471264368,
+          "precision": 0.9772727272727273,
+          "recall": 1.0
+        },
+        "NAME_STUDENT": {
+          "f1": 0.993127147766323,
+          "precision": 0.9914236706689536,
+          "recall": 0.9948364888123924
+        },
+        "PHONE_NUM": {
+          "f1": 0.8400000000000001,
+          "precision": 0.875,
+          "recall": 0.8076923076923077
+        },
+        "STREET_ADDRESS": {
+          "f1": 0.9461077844311376,
+          "precision": 0.9518072289156626,
+          "recall": 0.9404761904761905
+        },
+        "URL_PERSONAL": {
+          "f1": 0.9411764705882353,
+          "precision": 0.8888888888888888,
+          "recall": 1.0
+        },
+        "USERNAME": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "eval_precision": 0.9814077025232404,
+      "eval_recall": 0.9827127659574468,
+      "eval_runtime": 5.5907,
+      "eval_samples_per_second": 79.418,
+      "eval_steps_per_second": 19.854,
+      "step": 7092
+    }
+  ],
+  "logging_steps": 354,
+  "max_steps": 7092,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 2,
+  "save_steps": 500,
+  "stateful_callbacks": {
+    "EarlyStoppingCallback": {
+      "args": {
+        "early_stopping_patience": 1,
+        "early_stopping_threshold": 0.0
+      },
+      "attributes": {
+        "early_stopping_patience_counter": 1
+      }
+    },
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": true
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 1853786624606208.0,
+  "train_batch_size": 4,
+  "trial_name": null,
+  "trial_params": null
+}

@@ -318,6 +318,7 @@ $RECYCLE.BIN/
 *~
 
 # Model files and datasets (often large and not needed in repo)
+# Note: Specific model directories are explicitly allowed below
 *.safetensors
 *.bin
 *.pt
@@ -389,3 +390,6 @@ config.local.*
 !test_api.py
 !conftest.py
 
+# Model directories that SHOULD be tracked (exceptions to model file rules)
+!backend/models/dslim-bert-base-NER/
+!backend/models/deberta-v3-seq/

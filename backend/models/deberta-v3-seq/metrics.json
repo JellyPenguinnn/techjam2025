@@ -1,0 +1,184 @@
+{
+  "pii_val": {
+    "precision": 0.9866310160427807,
+    "recall": 0.9813829787234043,
+    "f1": 0.984,
+    "per_entity": {
+      "EMAIL": {
+        "precision": 0.9772727272727273,
+        "recall": 1.0,
+        "f1": 0.9885057471264368
+      },
+      "NAME_STUDENT": {
+        "precision": 0.993127147766323,
+        "recall": 0.9948364888123924,
+        "f1": 0.993981083404987
+      },
+      "PHONE_NUM": {
+        "precision": 0.875,
+        "recall": 0.8076923076923077,
+        "f1": 0.8400000000000001
+      },
+      "STREET_ADDRESS": {
+        "precision": 0.9873417721518988,
+        "recall": 0.9285714285714286,
+        "f1": 0.9570552147239264
+      },
+      "URL_PERSONAL": {
+        "precision": 0.8888888888888888,
+        "recall": 1.0,
+        "f1": 0.9411764705882353
+      },
+      "USERNAME": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "macro_f1": 0.9534530859739309
+  },
+  "pii_test": {
+    "precision": 0.9860529986052998,
+    "recall": 0.9805825242718447,
+    "f1": 0.9833101529902643,
+    "per_entity": {
+      "EMAIL": {
+        "precision": 0.9347826086956522,
+        "recall": 1.0,
+        "f1": 0.9662921348314606
+      },
+      "NAME_STUDENT": {
+        "precision": 0.9926470588235294,
+        "recall": 0.994475138121547,
+        "f1": 0.9935602575896963
+      },
+      "PHONE_NUM": {
+        "precision": 0.9545454545454546,
+        "recall": 0.84,
+        "f1": 0.8936170212765958
+      },
+      "STREET_ADDRESS": {
+        "precision": 0.9787234042553191,
+        "recall": 0.9484536082474226,
+        "f1": 0.963350785340314
+      },
+      "URL_PERSONAL": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.888888888888889
+      },
+      "USERNAME": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1": 0.9333333333333333
+      }
+    },
+    "macro_f1": 0.9398404035433816
+  },
+  "conll_valid": {
+    "precision": 0.029338637493784188,
+    "recall": 0.009929316728374285,
+    "f1": 0.014837168364139319,
+    "per_entity": {
+      "EMAIL": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "LOC": {
+        "precision": 0.9672131147540983,
+        "recall": 0.032117583015786606,
+        "f1": 0.06217070600632244
+      },
+      "MISC": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "NAME_STUDENT": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "ORG": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "PER": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "PHONE_NUM": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "STREET_ADDRESS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "USERNAME": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "macro_f1": 0.0069078562229247156
+  },
+  "conll_test": {
+    "precision": 0.023934897079942556,
+    "recall": 0.008855827134254339,
+    "f1": 0.012928248222365867,
+    "per_entity": {
+      "LOC": {
+        "precision": 0.8620689655172413,
+        "recall": 0.029994001199760048,
+        "f1": 0.057971014492753624
+      },
+      "MISC": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "NAME_STUDENT": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "ORG": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "PER": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "PHONE_NUM": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "STREET_ADDRESS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "URL_PERSONAL": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "USERNAME": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    "macro_f1": 0.00644122383252818
+  }
+}
